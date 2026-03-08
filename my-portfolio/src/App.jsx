@@ -68,7 +68,7 @@ const PROJECTS = [
     stack: ["Python","FastAPI","Pinecone","LangChain","OpenRouter","Llama 3.3 70B","Streamlit","OpenFDA API"],
     stat: { val: "100K+", label: "Drugs via FDA API" },
     images: [medirag1, medirag2, medirag3, medirag4],
-    placeholder: true,
+    placeholder: false,
     link: "https://github.com/zuhaakashif/MediRag",
     liveLink: "https://medirag-medical.streamlit.app",
     label: "RAG · LLM",
