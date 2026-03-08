@@ -5,8 +5,6 @@ import medspa3 from "./assets/projects/medspa-3.png"
 import medspa4 from "./assets/projects/medspa-4.png"
 import acucare1 from "./assets/projects/acucare-1.jpg"
 import acucare2 from "./assets/projects/acucare-2.jpg"
-import acucare3 from "./assets/projects/acucare-3.jpg"
-import acucare4 from "./assets/projects/acucare-4.jpg"
 import acucare5 from "./assets/projects/acucare-5.jpg"
 import acucare6 from "./assets/projects/acucare-6.jpg"
 import acucare7 from "./assets/projects/acucare-7.jpg"
@@ -14,7 +12,10 @@ import acucare8 from "./assets/projects/acucare-8.jpg"
 import acucare9 from "./assets/projects/acucare-9.jpg"
 import acucare10 from "./assets/projects/acucare-10.jpg"
 import acucare11 from "./assets/projects/acucare-11.jpg"
-
+import medirag1 from "./assets/projects/medirag-1.png"
+import medirag2 from "./assets/projects/medirag-2.png"
+import medirag3 from "./assets/projects/medirag-3.png"
+import medirag4 from "./assets/projects/medirag-4.png"
 
 
 
@@ -60,18 +61,17 @@ const PROJECTS = [
     label: "THESIS",
   },
   {
-    id: "rag", no: "03", name: "RAG Chatbot",
-    subtitle: "Centralized Retrieval-Augmented Generation", medium: "NLP · LLM · Python",
+    id: "medirag", no: "03", name: "MediRAG",
+    subtitle: "Role-Aware Medical Knowledge Assistant", medium: "RAG · LLM · FastAPI · Vector DB",
     accent: T.dusty, year: "2025",
-    description: "A multi-user RAG system that retrieves relevant context from a shared knowledge base using TF-IDF vector search, then generates grounded responses via an LLM API. Built on Streamlit for rapid deployment.",
-    stack: ["Python","TF-IDF","Scikit-learn","Streamlit","OpenRouter API"],
-    stat: { val: "∞", label: "Grounded Responses" },
-    images: [
-      "https://raw.githubusercontent.com/zuhaakashif/centralized-rag-chatbot/main/Screenshot%202025-07-14%20201649.png",
-      "https://raw.githubusercontent.com/zuhaakashif/centralized-rag-chatbot/main/Screenshot%202025-07-14%20201934.png",
-    ],
-    link: "https://github.com/zuhaakashif/centralized-rag-chatbot",
-    label: "NLP",
+    description: "A production-grade RAG chatbot that adapts its answers based on who is asking — doctor, patient, or hospital staff. Role filtering happens at the Pinecone vector level, not just the prompt. Integrates live OpenFDA data for 100,000+ medications and auto-escalates emergency queries.",
+    stack: ["Python","FastAPI","Pinecone","LangChain","OpenRouter","Llama 3.3 70B","Streamlit","OpenFDA API"],
+    stat: { val: "100K+", label: "Drugs via FDA API" },
+    images: [medirag1, medirag2, medirag3, medirag4],
+    placeholder: true,
+    link: "https://github.com/zuhaakashif/MediRag",
+    liveLink: "https://medirag-medical.streamlit.app",
+    label: "RAG · LLM",
   },
   {
    id: "unishelf", no: "04", name: "UniShelf",
