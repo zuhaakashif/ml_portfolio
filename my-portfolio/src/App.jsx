@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import "./App.css";
+
 import medspa1 from "./assets/projects/medspa-1.png"
 import medspa2 from "./assets/projects/medspa-2.png"
 import medspa3 from "./assets/projects/medspa-3.png"
@@ -16,8 +18,6 @@ import medirag1 from "./assets/projects/medirag-1.png"
 import medirag2 from "./assets/projects/medirag-2.png"
 import medirag3 from "./assets/projects/medirag-3.png"
 import medirag4 from "./assets/projects/medirag-4.png"
-
-
 
 const T = {
   paper:  "#F7F3EC",
@@ -266,8 +266,8 @@ function ProjectCard({ project, reverse }) {
   return (
     <article
       onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+      className={`proj-card${reverse?" rev":""}`}
       style={{
-        display:"grid", gridTemplateColumns: reverse ? "1fr 1.15fr" : "1.15fr 1fr",
         border:`1px solid ${T.rule}`,
         transition:"box-shadow 0.3s",
         boxShadow: hov ? `4px 4px 0 ${project.accent}` : "none",
@@ -275,19 +275,10 @@ function ProjectCard({ project, reverse }) {
         animation:"fadeUp 0.6s ease both",
       }}
     >
-      {/* Image side */}
-      <div style={{ order: reverse?2:1, overflow:"hidden" }}>
+      <div className="proj-img">
         <ImageStrip images={project.images} accent={project.accent} placeholder={project.placeholder} diagramComponent={project.diagramComponent} />
       </div>
-
-      {/* Info side */}
-      <div style={{
-        order: reverse?1:2,
-        padding:"32px 28px",
-        borderLeft: reverse?"none":`1px solid ${T.rule}`,
-        borderRight: reverse?`1px solid ${T.rule}`:"none",
-        display:"flex", flexDirection:"column",
-      }}>
+      <div className="proj-info">
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"12px" }}>
           <Eyebrow color={project.accent}>{project.label} — {project.year}</Eyebrow>
           <span style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.6rem", color:T.muted, opacity:0.45 }}>{project.no}</span>
@@ -556,7 +547,7 @@ function SkillsMatrix() {
   const accents = [T.sienna, T.sage, T.dusty, T.gold, T.sienna, T.sage];
 
   return (
-    <div ref={ref} style={{ paddingLeft:"52px", paddingTop:"28px", animation:"fadeUp 0.7s ease 0.2s both" }}>
+    <div ref={ref} className="skills-wrap">
       {/* Header */}
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:"20px" }}>
         <div style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.58rem", letterSpacing:"0.26em", color:T.muted }}>
@@ -685,18 +676,6 @@ export default function Portfolio() {
 
   return (
     <div style={{ background:T.paper, minHeight:"100vh", color:T.ink }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400;500&display=swap');
-        *{box-sizing:border-box;margin:0;padding:0;}
-        body{background:#F7F3EC;}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
-        ::-webkit-scrollbar{width:3px;}
-        ::-webkit-scrollbar-track{background:#F7F3EC;}
-        ::-webkit-scrollbar-thumb{background:#D4CEC4;}
-        a{text-decoration:none;}
-        .nav-lnk:hover{color:#1A1714!important;}
-        .contact-row:hover{padding-left:10px!important;}
-      `}</style>
 
       {/* ══ HEADER ════════════════════════════════════════════════════════ */}
       <header style={{
@@ -706,13 +685,13 @@ export default function Portfolio() {
         borderBottom:`1px solid ${scrollY>40?T.rule:"transparent"}`,
         transition:"all 0.3s",
       }}>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", padding:"14px 52px 0" }}>
+        <div className="hdr-inner">
           <div style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.57rem", letterSpacing:"0.28em", color:T.muted }}>PORTFOLIO — VOL. I, 2026</div>
           <div style={{ fontFamily:"'Playfair Display',serif", fontWeight:900, fontSize:"1.35rem", letterSpacing:"-0.02em", color:T.ink }}>Zuha Fatima</div>
-          <div style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.57rem", letterSpacing:"0.22em", color:T.muted }}>ML ENGINEER · DEVELOPER</div>
+          <div className="hdr-tagline" style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.57rem", letterSpacing:"0.22em", color:T.muted }}>ML ENGINEER · DEVELOPER</div>
         </div>
-        <div style={{ height:"1px", background:T.rule, margin:"10px 52px 0" }} />
-        <nav style={{ display:"flex", justifyContent:"center", gap:"36px", padding:"8px 52px 12px" }}>
+        <div className="hdr-rule" />
+        <nav className="hdr-nav">
           {NAV.map(item=>(
             <button key={item} className="nav-lnk" onClick={()=>go(item)}
               style={{
@@ -729,11 +708,10 @@ export default function Portfolio() {
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
       <section id="index" style={{ paddingTop:"118px" }}>
-        <div style={{ maxWidth:"1160px", margin:"0 auto", padding:"0 52px" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 2px 1fr", gap:0, alignItems:"start" }}>
-
+        <div className="hero-inner">
+          <div className="hero-grid">
             {/* Left */}
-            <div style={{ paddingRight:"52px", paddingTop:"28px", animation:"fadeUp 0.7s ease 0.1s both" }}>
+            <div className="hero-left">
               <div style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.58rem", letterSpacing:"0.3em", color:T.muted, marginBottom:"20px" }}>
                 № 001 — MACHINE LEARNING ENGINEER
               </div>
@@ -753,12 +731,16 @@ export default function Portfolio() {
                 <a href="https://github.com/zuhaakashif" target="_blank" rel="noreferrer"
                   style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.63rem", letterSpacing:"0.16em", textTransform:"uppercase", color:T.ink, borderBottom:`1px solid ${T.ink}`, paddingBottom:"2px" }}
                 >GitHub ↗</a>
-
+                <a href="https://zuhaakashif.github.io/assets/cv/Zuha_Fatima_Gilani_CV.pdf" target="_blank" rel="noreferrer"
+                  style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.63rem", letterSpacing:"0.16em", textTransform:"uppercase", color:T.muted, borderBottom:`1px solid ${T.rule}`, paddingBottom:"2px", transition:"color 0.2s" }}
+                  onMouseEnter={e=>e.currentTarget.style.color=T.ink}
+                  onMouseLeave={e=>e.currentTarget.style.color=T.muted}
+                >CV ↗</a>
               </div>
             </div>
 
             {/* Spine */}
-            <div style={{ background:T.rule, alignSelf:"stretch" }} />
+            <div className="hero-spine" />
 
             {/* Right — dot matrix skills grid */}
             <SkillsMatrix />
@@ -769,42 +751,66 @@ export default function Portfolio() {
 
       {/* ══ PROJECTS ══════════════════════════════════════════════════════ */}
       <section id="work" style={{ scrollMarginTop:"100px" }}>
-        <div style={{ maxWidth:"1160px", margin:"0 auto", padding:"56px 52px" }}>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"baseline", marginBottom:"44px" }}>
+        <div className="sec-pad">
+
+          <div style={{ 
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            marginBottom: "40px"
+          }}>
             <div>
               <Eyebrow>Selected Work</Eyebrow>
-              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(2rem,4vw,3rem)", fontWeight:900, color:T.ink, letterSpacing:"-0.02em" }}>Projects</h2>
+              <h2 style={{
+                fontFamily:"'Playfair Display',serif",
+                fontSize:"clamp(2rem,4vw,3rem)",
+                fontWeight:900,
+                color:T.ink,
+                letterSpacing:"-0.02em"
+              }}>
+                Projects
+              </h2>
             </div>
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.58rem", color:T.muted, letterSpacing:"0.18em" }}>5 PIECES — 2023–2025</div>
+
+            <div style={{
+              fontFamily:"'DM Mono',monospace",
+              fontSize:"0.58rem",
+              color:T.muted,
+              letterSpacing:"0.18em"
+            }}>
+              5 PIECES — 2023–2025
+            </div>
           </div>
+
           <div style={{ display:"flex", flexDirection:"column", gap:"2px" }}>
-            {PROJECTS.map((p,i) => <ProjectCard key={p.id} project={p} reverse={i%2!==0} />)}
+            {PROJECTS.map((p,i) => (
+              <ProjectCard key={p.id} project={p} reverse={i % 2 !== 0} />
+            ))}
           </div>
+
         </div>
+
         <div style={{ borderTop:`3px double ${T.rule}` }} />
       </section>
 
       {/* ══ EXPERIENCE ════════════════════════════════════════════════════ */}
       <section id="experience" style={{ scrollMarginTop:"100px" }}>
-        <div style={{ maxWidth:"1160px", margin:"0 auto", padding:"56px 52px" }}>
+        <div className="sec-pad">
           <div style={{ marginBottom:"44px" }}>
             <Eyebrow>Professional History</Eyebrow>
             <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(2rem,4vw,3rem)", fontWeight:900, color:T.ink, letterSpacing:"-0.02em" }}>Experience</h2>
           </div>
           <div>
             {EXPERIENCE.map((exp,i)=>(
-              <div key={exp.org} style={{
-                display:"grid", gridTemplateColumns:"200px 1px 1fr", gap:0,
-                borderTop:`1px solid ${T.rule}`, paddingTop:"36px", paddingBottom:"36px",
-                animation:`fadeUp 0.55s ease ${i*0.1}s both`,
-              }}>
-                <div style={{ paddingRight:"32px" }}>
+              <div key={exp.org} className="exp-row"
+                style={{ animation:`fadeUp 0.55s ease ${i*0.1}s both` }}>
+                <div className="exp-meta">
                   <div style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.57rem", letterSpacing:"0.15em", color:exp.accent, textTransform:"uppercase", marginBottom:"8px" }}>{exp.period}</div>
                   <div style={{ fontFamily:"'Playfair Display',serif", fontWeight:700, fontSize:"1rem", color:T.ink, marginBottom:"4px" }}>{exp.role}</div>
                   <div style={{ fontFamily:"'Lora',serif", fontStyle:"italic", fontSize:"0.82rem", color:T.muted }}>{exp.org}</div>
                 </div>
-                <div style={{ background:T.rule }} />
-                <div style={{ paddingLeft:"36px" }}>
+                <div className="exp-spine" />
+                <div className="exp-bullets">
                   {exp.bullets.map((b,j)=>(
                     <div key={j} style={{ display:"flex", gap:"12px", marginBottom:j<exp.bullets.length-1?"13px":0 }}>
                       <span style={{ color:exp.accent, fontFamily:"'DM Mono',monospace", fontSize:"0.72rem", marginTop:"3px", flexShrink:0 }}>—</span>
@@ -822,14 +828,14 @@ export default function Portfolio() {
 
       {/* ══ RESEARCH ══════════════════════════════════════════════════════ */}
       <section id="research" style={{ scrollMarginTop:"100px" }}>
-        <div style={{ maxWidth:"1160px", margin:"0 auto", padding:"56px 52px" }}>
+        <div className="sec-pad">
           <div style={{ marginBottom:"44px" }}>
             <Eyebrow>Academic Work</Eyebrow>
             <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(2rem,4vw,3rem)", fontWeight:900, color:T.ink, letterSpacing:"-0.02em" }}>Research</h2>
           </div>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1px 1fr", gap:0 }}>
+          <div className="research-grid">
             {/* Paper 1 */}
-            <div style={{ paddingRight:"48px", animation:"fadeUp 0.5s ease 0s both" }}>
+            <div className="research-p1" style={{ animation:"fadeUp 0.5s ease 0s both" }}>
               <div style={{ background:T.sienna, color:T.white, fontFamily:"'DM Mono',monospace", fontSize:"0.57rem", letterSpacing:"0.22em", padding:"4px 10px", display:"inline-block", marginBottom:"16px" }}>UNDER REVIEW</div>
               <h3 style={{ fontFamily:"'Playfair Display',serif", fontWeight:700, fontSize:"1.2rem", color:T.ink, lineHeight:1.35, marginBottom:"14px" }}>
                 Quantifying Catastrophic Failures in Classical Dermatology Segmentation
@@ -850,9 +856,8 @@ export default function Portfolio() {
             </div>
 
             <div style={{ background:T.rule }} />
-
             {/* Paper 2 */}
-            <div style={{ paddingLeft:"48px", animation:"fadeUp 0.5s ease 0.12s both" }}>
+            <div className="research-p2" style={{ animation:"fadeUp 0.5s ease 0.12s both" }}>
               <div style={{ background:T.sage, color:T.white, fontFamily:"'DM Mono',monospace", fontSize:"0.57rem", letterSpacing:"0.22em", padding:"4px 10px", display:"inline-block", marginBottom:"16px" }}>LEAD RESEARCHER</div>
               <h3 style={{ fontFamily:"'Playfair Display',serif", fontWeight:700, fontSize:"1.2rem", color:T.ink, lineHeight:1.35, marginBottom:"14px" }}>
                 UNet Robustness Across DRIVE, BUSI & PH²
@@ -877,9 +882,9 @@ export default function Portfolio() {
 
       {/* ══ CONTACT ═══════════════════════════════════════════════════════ */}
       <section id="contact" style={{ scrollMarginTop:"100px" }}>
-        <div style={{ maxWidth:"1160px", margin:"0 auto", padding:"56px 52px 80px" }}>
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 2px 1fr", gap:0 }}>
-            <div style={{ paddingRight:"60px" }}>
+        <div className="sec-pad-contact">
+          <div className="contact-grid">
+            <div className="contact-left">
               <Eyebrow>Get in Touch</Eyebrow>
               <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(2rem,4vw,3.2rem)", fontWeight:900, color:T.ink, letterSpacing:"-0.02em", marginBottom:"22px", lineHeight:1.1 }}>
                 Let's make<br/>
@@ -895,12 +900,12 @@ export default function Portfolio() {
               >Send a Message</a>
             </div>
             <div style={{ background:T.rule }} />
-            <div style={{ paddingLeft:"60px", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+            <div className="contact-right">
               {[
                 { label:"Email",       val:"zuha.fatima317@gmail.com",       href:"mailto:zuha.fatima317@gmail.com" },
                 { label:"GitHub",      val:"github.com/zuhaakashif",         href:"https://github.com/zuhaakashif" },
                 { label:"Research",    val:"zuhaakashif.github.io",           href:"https://zuhaakashif.github.io" },
-                
+                { label:"CV / Resume", val:"Download PDF",                   href:"https://zuhaakashif.github.io/assets/cv/Zuha_Fatima_Gilani_CV.pdf" },
               ].map(item=>(
                 <a key={item.label} href={item.href}
                   target={item.href.startsWith("mailto")?undefined:"_blank"} rel="noreferrer"
@@ -914,7 +919,7 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-        <div style={{ borderTop:`1px solid ${T.rule}`, padding:"18px 52px", display:"flex", justifyContent:"space-between" }}>
+        <div className="footer-inner">
           <span style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.56rem", color:T.muted, letterSpacing:"0.18em" }}>© 2026 ZUHA FATIMA — ALL RIGHTS RESERVED</span>
           <span style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.56rem", color:T.muted, letterSpacing:"0.18em" }}>PORTFOLIO NO. 001 — ISLAMABAD, PK</span>
         </div>
