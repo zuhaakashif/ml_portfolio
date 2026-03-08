@@ -731,11 +731,11 @@ export default function Portfolio() {
                 <a href="https://github.com/zuhaakashif" target="_blank" rel="noreferrer"
                   style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.63rem", letterSpacing:"0.16em", textTransform:"uppercase", color:T.ink, borderBottom:`1px solid ${T.ink}`, paddingBottom:"2px" }}
                 >GitHub ↗</a>
-                <a href="https://zuhaakashif.github.io/assets/cv/Zuha_Fatima_Gilani_CV.pdf" target="_blank" rel="noreferrer"
+                <a href="https://www.linkedin.com/in/zuha-fatima-7b7511247/" target="_blank" rel="noreferrer"
                   style={{ fontFamily:"'DM Mono',monospace", fontSize:"0.63rem", letterSpacing:"0.16em", textTransform:"uppercase", color:T.muted, borderBottom:`1px solid ${T.rule}`, paddingBottom:"2px", transition:"color 0.2s" }}
                   onMouseEnter={e=>e.currentTarget.style.color=T.ink}
                   onMouseLeave={e=>e.currentTarget.style.color=T.muted}
-                >CV ↗</a>
+                >LinkedIn ↗</a>
               </div>
             </div>
 
@@ -905,7 +905,7 @@ export default function Portfolio() {
                 { label:"Email",       val:"zuha.fatima317@gmail.com",       href:"mailto:zuha.fatima317@gmail.com" },
                 { label:"GitHub",      val:"github.com/zuhaakashif",         href:"https://github.com/zuhaakashif" },
                 { label:"Research",    val:"zuhaakashif.github.io",           href:"https://zuhaakashif.github.io" },
-                { label:"CV / Resume", val:"Download PDF",                   href:"https://zuhaakashif.github.io/assets/cv/Zuha_Fatima_Gilani_CV.pdf" },
+                { label:"LinkedIn", val:"zuhaafatima.linkedin",                   href:"https://www.linkedin.com/in/zuha-fatima-7b7511247/"},
               ].map(item=>(
                 <a key={item.label} href={item.href}
                   target={item.href.startsWith("mailto")?undefined:"_blank"} rel="noreferrer"
